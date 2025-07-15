@@ -1,0 +1,21 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "compile and run",
+      "type": "shell",
+      "command": "cmd",
+      "args": [
+        "/c",
+        "javac \"${file}\" && java -cp \"${fileDirname}\" ${fileBasenameNoExtension} < ../input.txt > ../output.txt"
+      ],
+      "options": {
+        "cwd": "${fileDirname}"
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    }
+  ]
+}

@@ -1,0 +1,247 @@
+What is the difference between Checked and Unchecked Exceptions in Java ?
+ChatGPT said:
+Interviewer: What is the difference between Checked and Unchecked Exceptions in Java?
+
+Me (as interviewee):
+Great question! In Java, exceptions are divided into Checked and Unchecked exceptions based on how the compiler enforces handling them.
+
+Checked Exceptions:
+Definition:
+These are exceptions that the compiler forces you to handle explicitly, either by catching them with a try-catch block or declaring them in the method’s throws clause.
+
+When do they occur?
+Usually due to external conditions beyond the program’s control, like file not found, network errors, or database issues.
+
+Examples:
+IOException, SQLException, ClassNotFoundException
+
+Handling:
+You must handle or declare them, otherwise, the code won’t compile.
+
+Unchecked Exceptions:
+Definition:
+These are exceptions that the compiler does not force you to handle. They are subclasses of RuntimeException.
+
+When do they occur?
+Usually due to programming errors such as logic mistakes or improper use of APIs.
+
+Examples:
+NullPointerException, ArrayIndexOutOfBoundsException, ArithmeticException
+
+Handling:
+You can choose to handle them, but it’s not mandatory.
+
+Summary Table:
+Feature	Checked Exceptions	Unchecked Exceptions
+Checked by compiler?	Yes	No
+Subclass of	Exception (excluding RuntimeException)	RuntimeException
+Handling mandatory?	Yes	No
+Common use case	External errors (IO, DB, etc.)	Programming errors
+In short: Checked exceptions represent conditions outside the program’s control that must be handled, while unchecked exceptions represent programming bugs.
+
+Would you like me to give examples or explain how to create custom exceptions?
+
+You said:
+what is constructor and what is its use
+ChatGPT said:
+Interviewer: What is a constructor and what is its use in Java?
+
+Me (as interviewee):
+A constructor in Java is a special method that is called automatically when an object of a class is created. Its main purpose is to initialize the new object.
+
+Key points about constructors:
+The constructor has the same name as the class.
+
+It does not have a return type, not even void.
+
+If you do not provide a constructor, Java provides a default no-argument constructor.
+
+You can overload constructors by defining multiple constructors with different parameter lists.
+
+Constructors are used to set initial values for object attributes or perform any setup required at object creation.
+
+Example:
+public class Car {
+    String model;
+    int year;
+
+    // Constructor
+    public Car(String model, int year) {
+        this.model = model;
+        this.year = year;
+    }
+}
+Usage:
+
+Car myCar = new Car("Toyota", 2020);
+Here, the constructor initializes the model and year fields when the Car object is created.
+
+Summary:
+Constructor initializes objects.
+
+Automatically invoked during object creation.
+
+Helps in setting up initial state.
+
+Would you like me to explain default constructors versus parameterized constructors?
+
+You said:
+4. What is the difference between ArrayList and LinkedList ?
+ChatGPT said:
+Interviewer: What is the difference between ArrayList and LinkedList in Java?
+
+Me (as interviewee):
+Sure! Both ArrayList and LinkedList implement the List interface, but they differ significantly in their underlying data structures and performance characteristics:
+
+1. Underlying Data Structure:
+ArrayList:
+Uses a dynamic array internally to store elements.
+
+LinkedList:
+Uses a doubly linked list, where each element (node) holds references to the previous and next nodes.
+
+2. Performance:
+Operation	ArrayList	LinkedList
+Access by index	Fast (O(1)) – direct access to elements by index	Slow (O(n)) – must traverse from start to reach index
+Insertion/removal at end	Fast amortized O(1) (may need resizing)	Fast O(1) – just adjust pointers
+Insertion/removal in middle	Slow O(n) – shifting elements	Faster O(1) – just adjust pointers once position is found
+Memory overhead	Less memory (stores only data)	More memory (stores data + two references per node)
+3. Use Cases:
+Use ArrayList when you need fast random access and mostly add/remove elements at the end.
+
+Use LinkedList when you frequently add/remove elements in the middle or at both ends, and random access is less frequent.
+
+Summary:
+Feature	ArrayList	LinkedList
+Data structure	Dynamic array	Doubly linked list
+Index-based access	Fast (O(1))	Slow (O(n))
+Insertion/removal	Slow in middle (O(n))	Fast at ends or middle (O(1))
+Memory usage	Lower	Higher (due to node pointers)
+Would you like me to provide code examples or talk about thread-safe versions like CopyOnWriteArrayList?
+
+You said:
+What is the internal working of JVM ?
+ChatGPT said:
+Interviewer: What is the internal working of JVM?
+
+Me (as interviewee):
+The Java Virtual Machine (JVM) is the core component of the Java Runtime Environment (JRE) that enables Java’s platform independence by executing Java bytecode.
+
+Here’s an overview of its internal working:
+
+1. Class Loader Subsystem:
+Responsible for loading class files (.class) into memory.
+
+It reads the bytecode from files, networks, or other sources.
+
+Performs verification to ensure the bytecode is valid and safe to execute.
+
+Loads classes in a hierarchical manner — bootstrap loader, extension loader, and application loader.
+
+2. Runtime Data Areas:
+When a class is loaded, JVM allocates memory in these areas:
+
+Method Area (or Metaspace): Stores class-level data — class structure, method code, static variables, constants.
+
+Heap: Stores all Java objects and arrays.
+
+Java Stack: Stores frames for method calls, including local variables and partial results. Each thread has its own stack.
+
+Program Counter (PC) Register: Contains the address of the JVM instruction currently being executed for each thread.
+
+Native Method Stack: Used for native (non-Java) method calls.
+
+3. Execution Engine:
+Interpreter: Reads bytecode instructions one by one and executes them.
+
+Just-In-Time (JIT) Compiler: Improves performance by compiling bytecode into native machine code at runtime, so subsequent executions are faster.
+
+Garbage Collector (GC): Manages automatic memory cleanup by freeing memory of objects no longer in use.
+
+4. Native Interface:
+Allows JVM to interact with native applications and libraries written in other languages like C or C++.
+
+Summary:
+JVM loads, verifies, and executes Java bytecode.
+
+It manages memory with different runtime data areas.
+
+Uses both interpreter and JIT compiler for execution.
+
+Handles garbage collection automatically.
+
+Ensures platform independence by abstracting the underlying OS and hardware.
+
+Would you like me to explain how class loading or JIT compilation works in more detail?
+
+You said:
+java is compiled or interpreted
+ChatGPT said:
+Interviewer: Is Java compiled or interpreted?
+
+Me (as interviewee):
+Java is both compiled and interpreted, which is one of its key strengths.
+
+Here’s how it works:
+
+Compilation:
+Java source code (.java files) is first compiled by the Java compiler (javac) into bytecode (.class files). Bytecode is a platform-independent, intermediate representation.
+
+Interpretation:
+The Java Virtual Machine (JVM) then interprets this bytecode at runtime, translating it into machine code that can run on the specific hardware and operating system.
+
+Just-In-Time (JIT) Compilation:
+To improve performance, JVM uses a JIT compiler that compiles frequently executed bytecode sequences into native machine code just in time, so they run faster on subsequent executions.
+
+Summary:
+Java source → compiled to bytecode (platform-independent).
+
+Bytecode → interpreted or JIT-compiled by JVM at runtime.
+
+This hybrid approach gives Java platform independence plus better performance than pure interpretation.
+
+Would you like me to explain how JIT compilation improves performance?
+
+You said:
+What are new features of interface after Java 8 ?
+ChatGPT said:
+Interviewer: What are the new features of interfaces introduced after Java 8?
+
+Me (as interviewee):
+After Java 8, interfaces in Java gained some powerful new features to support functional programming and improve backward compatibility. The key features are:
+
+1. Default Methods:
+Interfaces can have default method implementations using the default keyword.
+
+This allows adding new methods to interfaces without breaking existing implementations.
+
+Example:
+
+interface MyInterface {
+    default void defaultMethod() {
+        System.out.println("This is a default method.");
+    }
+}
+2. Static Methods:
+Interfaces can include static methods with implementations.
+
+These methods belong to the interface itself and can be called without an instance.
+
+Example:
+
+interface MyInterface {
+    static void staticMethod() {
+        System.out.println("This is a static method in interface.");
+    }
+}
+3. Private Methods (Java 9 and later):
+Interfaces can have private methods to share code between default and static methods.
+
+Private methods help reduce duplication inside interfaces but are not accessible outside.
+
+Summary:
+Feature	Description	Since Version
+Default Methods	Methods with default implementation in interface	Java 8
+Static Methods	Static methods inside interfaces	Java 8
+Private Methods	Private helper methods inside interfaces	Java 9
+These features make interfaces more powerful and flexible, especially for API evolution and functional-style programming.

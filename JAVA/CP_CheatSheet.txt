@@ -1,0 +1,398 @@
+Great question! In **Competitive Programming (CP)**, the C++ STL (Standard Template Library) is heavily used due to its speed and flexibility. Java has **equivalent data structures and utilities**, though with slightly different syntax and naming. Here's a complete **C++ STL vs Java equivalents cheat sheet**, focused specifically for CP.
+
+---
+
+## 🆚 **C++ STL vs Java: CP Equivalents**
+
+| 🔹 **C++ STL**             | 🔸 **Java Equivalent**                                       | ⚡ **Notes**                     |
+| -------------------------- | ------------------------------------------------------------ | ------------------------------- |
+| `vector<int>`              | `ArrayList<Integer>`                                         | Resizable array                 |
+| `set<int>`                 | `TreeSet<Integer>`                                           | Sorted, log(n) ops              |
+| `unordered_set<int>`       | `HashSet<Integer>`                                           | Unordered, average O(1)         |
+| `map<int, int>`            | `TreeMap<Integer, Integer>`                                  | Sorted keys                     |
+| `unordered_map<int, int>`  | `HashMap<Integer, Integer>`                                  | Fast key-value store            |
+| `stack<int>`               | `Stack<Integer>`                                             | Use only when LIFO needed       |
+| `queue<int>`               | `LinkedList<Integer>` or `ArrayDeque<Integer>`               | Use as queue                    |
+| `deque<int>`               | `ArrayDeque<Integer>`                                        | Double-ended queue              |
+| `priority_queue<int>`      | `PriorityQueue<Integer>`                                     | Min-heap by default             |
+| `greater<int>`             | `PriorityQueue<>(Collections.reverseOrder())`                | For max-heap                    |
+| `pair<int, int>`           | `class Pair { int x, y; }` or `AbstractMap.SimpleEntry<K,V>` | Can also use records (Java 14+) |
+| `sort(v.begin(), v.end())` | `Collections.sort(list)`                                     | Also `Arrays.sort(arr)`         |
+| `binary_search()`          | `Collections.binarySearch(list, key)`                        | Sorted list required            |
+| `lower_bound()`            | `custom binary search or TreeSet.ceiling()`                  | Manual or via TreeSet           |
+| `upper_bound()`            | `TreeSet.higher()`                                           | Not built-in for arrays         |
+| `next_permutation()`       | `Custom implementation in Java`                              | Java doesn’t have this          |
+| `__gcd(a,b)`               | `BigInteger.valueOf(a).gcd(BigInteger.valueOf(b))`           | Or implement manually           |
+| `to_string()`              | `String.valueOf()`                                           | Converts any type to string     |
+| `stoi(s)`                  | `Integer.parseInt(s)`                                        | String to int                   |
+
+---
+
+## 🔧 **Java-Specific Tools Useful for CP**
+
+### ✅ Fast Input/Output
+
+```java
+BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+StringTokenizer st = new StringTokenizer(br.readLine());
+int x = Integer.parseInt(st.nextToken());
+```
+
+### ✅ Custom Pair Class
+
+```java
+class Pair {
+    int first, second;
+    Pair(int f, int s) {
+        this.first = f;
+        this.second = s;
+    }
+}
+```
+
+### ✅ Lambda Sorting
+
+```java
+Collections.sort(list, (a, b) -> Integer.compare(a.x, b.x));
+```
+
+---
+
+## 🚀 Recommended Java Imports for CP
+
+```java
+import java.util.*;
+import java.io.*;
+import java.math.*;
+```
+
+---
+
+## 🧠 Tips for Java in CP
+
+* Use `FastReader` for competitive I/O (BufferedReader + StringTokenizer).
+* Use `StringBuilder` for efficient string output.
+* Avoid `Scanner` in time-sensitive contests (slower than BufferedReader).
+* Java's `PriorityQueue` is a **min-heap** by default; use `Collections.reverseOrder()` for max-heap.
+
+---
+
+Would you like:
+
+* A ready-made **Java CP template** with fast I/O and all imports?
+* Or a list of **Java-only tips and tricks** for speeding up in contests?
+
+
+
+
+
+
+
+
+
+Perfect — here's **both**:
+
+---
+
+# ✅ 1. **Java CP Template (Fast I/O + Useful Imports)**
+
+Use this as your **starting template** in every CP contest:
+
+```java
+import java.io.*;
+import java.util.*;
+
+public class Main {
+    static PrintWriter out = new PrintWriter(System.out);
+    static FastReader sc = new FastReader();
+
+    public static void main(String[] args) throws IOException {
+        int t = sc.nextInt();  // number of test cases
+        while (t-- > 0) {
+            solve();
+        }
+        out.flush();  // flush output after all test cases
+    }
+
+    static void solve() {
+        // Your solution here
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+        for(int i = 0; i < n; i++) arr[i] = sc.nextInt();
+
+        // Example output
+        out.println(Arrays.toString(arr));
+    }
+
+    // FastReader for faster input
+    static class FastReader {
+        BufferedReader br;
+        StringTokenizer st;
+
+        public FastReader() {
+            br = new BufferedReader(new InputStreamReader(System.in));
+        }
+
+        String next() {
+            while (st == null || !st.hasMoreElements()) {
+                try { st = new StringTokenizer(br.readLine()); }
+                catch (IOException e) { e.printStackTrace(); }
+            }
+            return st.nextToken();
+        }
+
+        int nextInt() { return Integer.parseInt(next()); }
+        long nextLong() { return Long.parseLong(next()); }
+        double nextDouble() { return Double.parseDouble(next()); }
+        String nextLine() {
+            String str = "";
+            try { str = br.readLine(); }
+            catch (IOException e) { e.printStackTrace(); }
+            return str;
+        }
+    }
+}
+```
+
+---
+
+# ⚡ 2. **Java-Only Tips & Tricks for CP**
+
+### 🔹 Fastest I/O
+
+* **Avoid Scanner**: Too slow.
+* Use **`BufferedReader` + `PrintWriter`**.
+* Use `StringBuilder` if building large strings.
+
+---
+
+### 🔹 Min/Max Heap in Java
+
+```java
+PriorityQueue<Integer> minHeap = new PriorityQueue<>();
+PriorityQueue<Integer> maxHeap = new PriorityQueue<>(Collections.reverseOrder());
+```
+
+---
+
+### 🔹 Custom Pair/Comparator
+
+```java
+class Pair {
+    int x, y;
+    Pair(int x, int y) { this.x = x; this.y = y; }
+}
+```
+
+Sorting a list of pairs by `x`:
+
+```java
+Collections.sort(list, (a, b) -> Integer.compare(a.x, b.x));
+```
+
+---
+
+### 🔹 No Built-in Lower/Upper Bound?
+
+Use `TreeSet`:
+
+```java
+TreeSet<Integer> ts = new TreeSet<>();
+ts.add(5);
+ts.ceiling(4); // >= 4 (lower bound)
+ts.higher(4);  // > 4 (upper bound)
+```
+
+For arrays, implement manually with `binarySearch`.
+
+---
+
+### 🔹 Handling Modulo (like 1e9+7)
+
+```java
+static final int MOD = 1_000_000_007;
+static int add(int a, int b) { return (a + b) % MOD; }
+static int mul(int a, int b) { return (int)((1L * a * b) % MOD); }
+```
+
+---
+
+### 🔹 GCD/LCM
+
+```java
+static int gcd(int a, int b) {
+    return b == 0 ? a : gcd(b, a % b);
+}
+
+static int lcm(int a, int b) {
+    return a / gcd(a, b) * b;
+}
+```
+
+---
+
+### 🔹 Avoid TLE in Java
+
+* Use fast I/O.
+* Avoid boxed types (`Integer`, `Long`) inside loops unless necessary.
+* Avoid recursion depth issues (use iteration if needed).
+* Preallocate arrays/lists where possible.
+
+---
+
+Would you like a downloadable `.java` template or `.txt` version of all this? Or a CP practice sheet specifically for Java (divided by topic)?
+
+
+
+
+
+
+
+
+
+
+
+
+Here’s a curated **Java Competitive Programming Practice Sheet** organized by **topics**, focusing on strings, arrays, and common CP problems — with problem ideas and corresponding platforms.
+
+---
+
+# 🧠 Java CP Practice Sheet (Topic-wise)
+
+---
+
+## ✅ **1. Basic I/O + Loops**
+
+* 🔹 Read input using `FastReader`
+* 🔹 Print multiple outputs
+* 🔹 Loop over arrays and strings
+
+📌 Practice:
+
+* [A+B Problem (Beginner)](https://codeforces.com/problemset/problem/1/A)
+* [ATM – CodeChef](https://www.codechef.com/problems/HS08TEST)
+
+---
+
+## ✅ **2. Strings**
+
+**Key Concepts**: `StringBuilder`, `substring`, `charAt`, `equals()`, frequency arrays
+
+📌 Practice:
+
+* [Long Words – Codeforces](https://codeforces.com/problemset/problem/58/A)
+* [Petya and Strings – Codeforces](https://codeforces.com/problemset/problem/112/A)
+* [Beautiful Strings – Codeforces](https://codeforces.com/problemset/problem/41/A)
+* [String Task – Codeforces](https://codeforces.com/problemset/problem/118/A)
+
+---
+
+## ✅ **3. Arrays + Sorting**
+
+**Key Concepts**: `Arrays.sort()`, `prefix sums`, `two pointers`
+
+📌 Practice:
+
+* [Maximum Subarray – Leetcode #53](https://leetcode.com/problems/maximum-subarray/)
+* [Pair with given sum – GFG](https://www.geeksforgeeks.org/find-a-pair-with-the-given-difference/)
+* [Removing Elements – Codeforces](https://codeforces.com/problemset/problem/978/A)
+
+---
+
+## ✅ **4. HashMap / Frequency**
+
+**Key Concepts**: `HashMap`, `HashSet`, `TreeMap`, character frequency
+
+📌 Practice:
+
+* [Common Characters – Leetcode #1002](https://leetcode.com/problems/find-common-characters/)
+* [Two Sum – Leetcode #1](https://leetcode.com/problems/two-sum/)
+* [Anagram Check – GFG](https://www.geeksforgeeks.org/check-whether-two-strings-are-anagram-of-each-other/)
+
+---
+
+## ✅ **5. String Manipulation + Builder**
+
+**Key Concepts**: `StringBuilder.append()`, `.delete()`, `.reverse()`
+
+📌 Practice:
+
+* [Reverse Words in a String – Leetcode #151](https://leetcode.com/problems/reverse-words-in-a-string/)
+* [Backspace String Compare – Leetcode #844](https://leetcode.com/problems/backspace-string-compare/)
+
+---
+
+## ✅ **6. Stack / Balanced Parentheses**
+
+**Key Concepts**: `Stack<Character>`, pushing/popping brackets
+
+📌 Practice:
+
+* [Valid Parentheses – Leetcode #20](https://leetcode.com/problems/valid-parentheses/)
+* [Duplicate Brackets – PepCoding](https://www.pepcoding.com/resources/data-structures-and-algorithms-in-java-levelup/stacks/duplicate-brackets-official/ojquestion)
+
+---
+
+## ✅ **7. Sliding Window + Substrings**
+
+**Key Concepts**: `HashSet`, window size, substring counts
+
+📌 Practice:
+
+* [Longest Substring Without Repeat – Leetcode #3](https://leetcode.com/problems/longest-substring-without-repeating-characters/)
+* [Count Binary Substrings – Leetcode #696](https://leetcode.com/problems/count-binary-substrings/)
+
+---
+
+## ✅ **8. Palindromes / Two Pointer**
+
+**Key Concepts**: `isPalindrome`, reverse strings, two-pointer checks
+
+📌 Practice:
+
+* [Valid Palindrome – Leetcode #125](https://leetcode.com/problems/valid-palindrome/)
+* [Longest Palindromic Substring – Leetcode #5](https://leetcode.com/problems/longest-palindromic-substring/)
+
+---
+
+## ✅ **9. Custom Sorting**
+
+**Key Concepts**: `Collections.sort()`, custom comparator
+
+📌 Practice:
+
+* [Largest Number – Leetcode #179](https://leetcode.com/problems/largest-number/)
+* [Sort Characters by Frequency – Leetcode #451](https://leetcode.com/problems/sort-characters-by-frequency/)
+
+---
+
+## ✅ **10. Prefix Sums / Optimization**
+
+**Key Concepts**: Precomputing, string prefix count, rolling sum
+
+📌 Practice:
+
+* [Equal Substring Budget – Leetcode #1208](https://leetcode.com/problems/get-equal-substrings-within-budget/)
+* [Binary Subarrays With Sum – Leetcode #930](https://leetcode.com/problems/binary-subarrays-with-sum/)
+
+---
+
+## ✅ **11. Trie & Advanced**
+
+**Key Concepts**: `Trie`, prefix matching, autocomplete
+
+📌 Practice:
+
+* [Implement Trie – Leetcode #208](https://leetcode.com/problems/implement-trie-prefix-tree/)
+* [Replace Words – Leetcode #648](https://leetcode.com/problems/replace-words/)
+
+---
+
+### 📁 Want this in a downloadable format?
+
+I can provide this practice sheet as a `.pdf`, `.txt`, or `.csv` file – just tell me your preferred format.
+
+Would you like:
+
+* Links auto-formatted in a document?
+* Space to mark "done" ✅ or add notes?
