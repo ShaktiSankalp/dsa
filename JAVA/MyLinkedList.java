@@ -31,20 +31,20 @@ public class MyLinkedList {
 
 // //scratch implementation for linked list
 
-//     public class LL{
+// public class LinkedListDemo {
+
+//     static class LL {
 //         Node head;
 //         private int size;
 
-
-//         LL () {
+//         LL() {
 //             size = 0;
 //         }
 
-
+//         // Node class
 //         public class Node {
 //             String data;
 //             Node next;
-
 
 //             Node(String data) {
 //                 this.data = data;
@@ -53,111 +53,99 @@ public class MyLinkedList {
 //             }
 //         }
 
-
+//         // Add to the beginning
 //         public void addFirst(String data) {
 //             Node newNode = new Node(data);
 //             newNode.next = head;
 //             head = newNode;
 //         }
 
-
+//         // Add to the end
 //         public void addLast(String data) {
 //             Node newNode = new Node(data);
 
-
-//             if(head == null) {
+//             if (head == null) {
 //                 head = newNode;
 //                 return;
 //             }
 
-
 //             Node lastNode = head;
-//             while(lastNode.next != null) {
+//             while (lastNode.next != null) {
 //                 lastNode = lastNode.next;
 //             }
-
 
 //             lastNode.next = newNode;
 //         }
 
-
+//         // Print the list
 //         public void printList() {
 //             Node currNode = head;
 
-
-//             while(currNode != null) {
-//                 System.out.print(currNode.data+" -> ");
+//             while (currNode != null) {
+//                 System.out.print(currNode.data + " -> ");
 //                 currNode = currNode.next;
 //             }
-
 
 //             System.out.println("null");
 //         }
 
-
+//         // Remove first node
 //         public void removeFirst() {
-//             if(head == null) {
+//             if (head == null) {
 //                 System.out.println("Empty List, nothing to delete");
 //                 return;
 //             }
-
 
 //             head = this.head.next;
 //             size--;
 //         }
 
-
+//         // Remove last node
 //         public void removeLast() {
-//             if(head == null) {
+//             if (head == null) {
 //                 System.out.println("Empty List, nothing to delete");
 //                 return;
 //             }
 
-
 //             size--;
-//             if(head.next == null) {
+//             if (head.next == null) {
 //                 head = null;
 //                 return;
 //             }
 
-
 //             Node currNode = head;
 //             Node lastNode = head.next;
-//             while(lastNode.next != null) {
+//             while (lastNode.next != null) {
 //                 currNode = currNode.next;
 //                 lastNode = lastNode.next;
 //             }
 
-
 //             currNode.next = null;
 //         }
 
-
+//         // Get size of the list
 //         public int getSize() {
 //             return size;
 //         }
 
-
-//         //How to insert in the middle of a Linked List (at a specified index ‘i’) ?     
-
-
-//             public void addInMiddle(int index, String data) {
-//             if(index > size || index < 0) {
+//         // Insert at a specific index
+//         public void addInMiddle(int index, String data) {
+//             if (index > size || index < 0) {
 //                 System.out.println("Invalid Index value");
 //                 return;
 //             }
-//             size++;
-
 
 //             Node newNode = new Node(data);
-//             if(head == null || index == 0) {
+
+//             if (head == null || index == 0) {
 //                 newNode.next = head;
 //                 head = newNode;
 //                 return;
 //             }
-//                 Node currNode = head;
-//             for(int i=1; i<size; i++) {
-//                 if(i == index) {
+
+//             Node currNode = head;
+//             for (int i = 1; i < size; i++) {
+//                 if (i == index) {
 //                     Node nextNode = currNode.next;
 //                     currNode.next = newNode;
 //                     newNode.next = nextNode;
@@ -166,35 +154,30 @@ public class MyLinkedList {
 //                 currNode = currNode.next;
 //             }
 //         }
+//     }
 
- 
+//     // Main method to test everything
+//     public static void main(String[] args) {
+//         LL list = new LL();
+//         list.addLast("is");
+//         list.addLast("a");
+//         list.addLast("list");
+//         list.printList();         // is -> a -> list -> null
 
+//         list.addFirst("this");
+//         list.printList();         // this -> is -> a -> list -> null
 
+//         System.out.println("Size: " + list.getSize()); // 4
 
+//         list.removeFirst();
+//         list.printList();         // is -> a -> list -> null
 
-//    public static void main(String args[]) {
-//        LL list = new LL();
-//        list.addLast("is");
-//        list.addLast("a");
-//        list.addLast("list");
-//        list.printList();
+//         list.removeLast();
+//         list.printList();         // is -> a -> null
 
-
-//        list.addFirst("this");
-//        list.printList();
-//        System.out.println(list.getSize()); 
-
-
-//        list.removeFirst();
-//        list.printList();
-
-
-//        list.removeLast();
-//        list.printList();
-//    }
-
-   
-
+//         list.addInMiddle(1, "new");
+//         list.printList();         // is -> new -> a -> null
+//     }
 // }
 
 
